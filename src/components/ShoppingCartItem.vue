@@ -1,5 +1,8 @@
 <script setup>
+  import{ useCartStore } from '@/stores/cart';
   import { formatCurrency } from '@/helpers';
+
+  const cart = useCartStore();
 
   defineProps({
     item: {
@@ -24,10 +27,12 @@
 
       <select
         class="w-32 text-center p-2 rounded-lg bg-white"
+        @change="cart.updateQuantity(item.id, +$event.target.value)"
       >
         <option 
-          v-for="n in 5"
+          v-for="n in cart.checkProductAvailability(item)"
           :value="n"  
+          :key="n"
         >
           {{ n }}
         </option>
