@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <li class="flex space-x-6 p-6 items-center">
+  <li class="flex space-x-6 items-center">
     <img 
       :src="item.image" 
       :alt="'Imagen de ' + item.name"
