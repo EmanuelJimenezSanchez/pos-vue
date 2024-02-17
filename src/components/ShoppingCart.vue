@@ -1,8 +1,9 @@
 <script setup>
   import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
   import Amount from '@/components/Amount.vue'
+  import CouponForm from '@/components/CouponForm.vue'
   import { useCartStore } from '@/stores/cart'
-import { formatCurrency } from '@/helpers';
+  import { formatCurrency } from '@/helpers';
 
   const cart = useCartStore()
 </script>
@@ -25,7 +26,7 @@ import { formatCurrency } from '@/helpers';
         />
       </ul>
   
-      <dl class="mt-8 space-y-6 text-sm font-medium text-gray-500">
+      <dl class="mt-8 space-y-3 text-sm font-medium text-gray-500">
         <Amount>
           <template #label>Subtotal:</template>
           {{ formatCurrency(cart.subtotal) }}
@@ -41,6 +42,8 @@ import { formatCurrency } from '@/helpers';
           {{ formatCurrency(cart.total) }}
         </Amount>
       </dl>
+
+      <CouponForm />
     </div>
   </div>
 </template>
