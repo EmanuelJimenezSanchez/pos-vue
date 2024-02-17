@@ -5,11 +5,14 @@ export const useCartStore = defineStore('cart', () => {
 
   const items = ref([])
   const subtotal = ref(0)
+  const taxes = ref(0)
 
-  const MaxProducts = 5
+  const MAX_PRODUCTS = 5
+  const TAX_RATE = 0.10
 
   watch(items, () => {
     subtotal.value = items.value.reduce((total, item) => total + (item.price * item.quantity), 0)
+    taxes.value = subtotal.value * TAX_RATE
   }, {
     deep: true
   })
@@ -25,12 +28,13 @@ export const useCartStore = defineStore('cart', () => {
   const isEmpty = computed(() => items.value.length === 0)
 
   const checkProductAvailability = computed(() => {
-    return (item) => item.availability < MaxProducts ? item.availability : MaxProducts
+    return (item) => item.availability < MAX_PRODUCTS ? item.availability : MAX_PRODUCTS
   })
 
   return {
     addItem,
     subtotal,
+    taxes,
     isEmpty,
     items,
     checkProductAvailability,
