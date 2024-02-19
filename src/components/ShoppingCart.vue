@@ -51,6 +51,14 @@
       </dl>
 
       <CouponForm />
+
+      <button
+        type="button"
+        class="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase p-3 rounded-md"
+        @click="cart.checkout"
+      >
+        Confirmar Compra
+      </button>
     </div>
   </div>
 </template>
